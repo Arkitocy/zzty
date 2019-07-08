@@ -1,4 +1,4 @@
-package com.base.day4;
+package com.base.day4.userDemo;
 
 public class User {
     private int id;

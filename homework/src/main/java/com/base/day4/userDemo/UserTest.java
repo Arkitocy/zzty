@@ -1,4 +1,4 @@
-package com.base.day4;
+package com.base.day4.userDemo;
 
 public class UserTest {
     public static void main(String[] args) {

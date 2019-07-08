@@ -1,4 +1,4 @@
-package com.base.day4;
+package com.base.day4.orderDemo;
 
 public class Order {
     private String customer;

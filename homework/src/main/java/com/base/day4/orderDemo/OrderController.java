@@ -1,10 +1,10 @@
-package com.base.day4;
+package com.base.day4.orderDemo;
 
 
 import java.util.ArrayList;
 
 public class OrderController {
-    java.util.ArrayList orderArrayList = new ArrayList();
+    ArrayList orderArrayList = new ArrayList();
 
     public boolean showOrder(String name) {
         boolean result = false;
