@@ -51,15 +51,18 @@ public class Account {
         this.lastupdate = lastupdate;
     }
 
-    public void sumsubstract(BigDecimal trans) {
+    public boolean sumsubstract(BigDecimal trans) {
         this.sum = this.sum.subtract(trans);
+        return true;
     }
 
-    public void sumadd(BigDecimal trans) {
+    public boolean sumadd(BigDecimal trans) {
         this.sum = this.sum.add(trans);
+        return true;
     }
 
-    public void updateDate(){
-        this.lastupdate=new Date();
+    public boolean updateDate() {
+        this.lastupdate = new Date();
+        return true;
     }
 }

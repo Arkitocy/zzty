@@ -18,7 +18,9 @@ public class AccountController {
         return acc;
     }
 
-    public void transfer(Account account1, Account account2, BigDecimal trans) {
+    public void transfer(String name1, String name2, BigDecimal trans) {
+        Account account1 = this.getAccount(name1);
+        Account account2 = this.getAccount(name2);
         if (trans.compareTo(account1.getSum()) > -1) {
             System.out.println(account1.getName() + "账号的余额不足。");
         } else {
@@ -35,7 +37,8 @@ public class AccountController {
         accountArrayList.add(account);
     }
 
-    public void showSum(Account account) {
-        System.out.println("用户：" + account.getName() + " 余额:" + account.getSum()+"最后修改时间："+account.getLastupdate());
+    public void showSum(String name) {
+        Account account = getAccount(name);
+        System.out.println("用户：" + account.getName() + " 余额:" + account.getSum() + "最后修改时间：" + account.getLastupdate());
     }
 }
