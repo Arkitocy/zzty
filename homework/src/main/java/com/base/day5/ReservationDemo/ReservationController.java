@@ -30,4 +30,13 @@ public class ReservationController {
         }
     }
 
+    public boolean finishReservation(Reservation reservation){
+        return arrayList.remove(reservation);
+    }
+
+    public ArrayList showAllReservation(){
+        return arrayList;
+    }
+
+
 }

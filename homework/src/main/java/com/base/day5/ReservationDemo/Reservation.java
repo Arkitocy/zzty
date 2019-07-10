@@ -7,6 +7,7 @@ public class Reservation {
     private Car car;
     private Date setDate;
     private Date reservationDate;
+    private Boolean status;
     SimpleDateFormat sf = new SimpleDateFormat("yyyy年MM月dd日HH时mm分");
 
 
@@ -14,6 +15,7 @@ public class Reservation {
         this.car = car;
         this.setDate=new Date();
         this.reservationDate = reservationDate;
+        this.status=false;
     }
 
     public Car getCar() {
@@ -38,6 +40,14 @@ public class Reservation {
 
     public void setSetDate(Date setDate) {
         this.setDate = setDate;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     public void show(){
