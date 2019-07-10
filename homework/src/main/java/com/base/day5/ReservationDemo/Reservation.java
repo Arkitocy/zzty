@@ -1,11 +1,14 @@
 package com.base.day5.ReservationDemo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Reservation {
     private Car car;
     private Date setDate;
     private Date reservationDate;
+    SimpleDateFormat sf = new SimpleDateFormat("yyyy年MM月dd日HH时mm分");
+
 
     public Reservation(Car car, Date reservationDate) {
         this.car = car;
@@ -35,6 +38,10 @@ public class Reservation {
 
     public void setSetDate(Date setDate) {
         this.setDate = setDate;
+    }
+
+    public void show(){
+        System.out.println("顾客" + this.getCar().getCustomer().getName() + "的车" + this.getCar().getCarId() + "预约在" + sf.format(this.getReservationDate()) + "服务。预约时间：" + sf.format(this.getSetDate()));
     }
 
 }
