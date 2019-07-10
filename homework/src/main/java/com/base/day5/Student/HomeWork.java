@@ -1,6 +1,5 @@
 package com.base.day5.Student;
 
-import java.io.File;
 import java.util.Date;
 
 public class HomeWork {
@@ -56,10 +55,10 @@ public class HomeWork {
         this.score = score;
     }
 
-    public void show(){
-        System.out.println(this.getStudent().getName()+"提交作业");
-        System.out.println("完成时间："+this.getFinishDate());
-        System.out.println("提交时间："+this.getUploadDate());
-        System.out.println("成绩"+this.getScore());
+    public void show() {
+        System.out.println(this.getStudent().getName() + "提交作业");
+        System.out.println("完成时间：" + this.getFinishDate());
+        System.out.println("提交时间：" + this.getUploadDate());
+        System.out.println("成绩" + this.getScore());
     }
 }

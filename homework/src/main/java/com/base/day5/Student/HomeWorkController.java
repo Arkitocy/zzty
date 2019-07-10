@@ -36,7 +36,7 @@ public class HomeWorkController {
             HomeWork homeWork = (HomeWork) homeworkList.get(i);
             if (student.equals(homeWork.getStudent())) {
                 homeWork.show();
-            }else{
+            } else {
                 System.out.println("无该学生提交的作业");
             }
         }
@@ -46,8 +46,10 @@ public class HomeWorkController {
         if (score >= 0 && score <= 100) {
             for (int i = 0; i < homeworkList.size(); i++) {
                 HomeWork homeWork = (HomeWork) homeworkList.get(i);
-                homeWork.setScore(score);
-                System.out.println("修改成功");
+                if (homeWork.equals(work)) {
+                    work.setScore(score);
+                    System.out.println("修改成功");
+                }
             }
         } else {
             System.out.println("修改失败");
