@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Reservation {
     private Car car;
+    private Date setDate;
     private Date reservationDate;
 
     public Reservation(Car car, Date reservationDate) {
@@ -27,5 +28,11 @@ public class Reservation {
         this.reservationDate = reservationDate;
     }
 
+    public Date getSetDate() {
+        return setDate;
+    }
 
+    public void setSetDate(Date setDate) {
+        this.setDate = setDate;
+    }
 }
