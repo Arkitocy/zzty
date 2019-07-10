@@ -31,14 +31,12 @@ public class HomeWorkController {
 
     }
 
-    public void showWork(Student student) {
+    public void showWork(int number) {
         for (int i = 0; i < homeworkList.size(); i++) {
             HomeWork homeWork = (HomeWork) homeworkList.get(i);
-            if (student.equals(homeWork.getStudent())) {
+            if (number==homeWork.getStudent().getNumber()) {
                 homeWork.show();
-            } else {
-                System.out.println("无该学生提交的作业");
-            }
+            } 
         }
     }
 

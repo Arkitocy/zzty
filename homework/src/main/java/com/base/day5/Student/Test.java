@@ -19,8 +19,11 @@ public class Test {
         hc.setScore(hw1, 20);
         hc.setScore(hw2, 60);
         hc.setScore(hw3, 120);
-        hc.showWork(s1);
-        hc.showWork(s2);
+
+        System.out.println();
+        hc.showWork(s1.getNumber());
+        System.out.println();
+        hc.showWork(s2.getNumber());
 
     }
 }
