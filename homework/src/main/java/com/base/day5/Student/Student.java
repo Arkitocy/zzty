@@ -1,10 +1,16 @@
-package com.base.day5;
+package com.base.day5.Student;
 
 public class Student {
     private String name;
     private int number;
     private int age;
-    private int score;
+
+
+    public Student(String name, int number, int age) {
+        this.name = name;
+        this.number = number;
+        this.age = age;
+    }
 
     public String getName() {
         return name;
@@ -30,11 +36,5 @@ public class Student {
         this.age = age;
     }
 
-    public int getScore() {
-        return score;
-    }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
 }
