@@ -35,4 +35,5 @@ public class Reservation {
     public void setSetDate(Date setDate) {
         this.setDate = setDate;
     }
+
 }

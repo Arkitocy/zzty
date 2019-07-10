@@ -1,5 +1,6 @@
 package com.base.day5.Student;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class HomeWork {
@@ -8,6 +9,8 @@ public class HomeWork {
     private Date uploadDate;
     private int score = 0;
     private String content;//无文件使用 以string代替
+    SimpleDateFormat sf = new SimpleDateFormat("yyyy年MM月dd日HH时mm分");
+
 
     public HomeWork(Student student, Date finishDate, String content) {
         this.student = student;
@@ -57,8 +60,8 @@ public class HomeWork {
 
     public void show() {
         System.out.println(this.getStudent().getName() + "提交作业");
-        System.out.println("完成时间：" + this.getFinishDate());
-        System.out.println("提交时间：" + this.getUploadDate());
+        System.out.println("完成时间：" + sf.format(this.getFinishDate()));
+        System.out.println("提交时间：" + sf.format(this.getUploadDate()));
         System.out.println("成绩" + this.getScore());
     }
 }

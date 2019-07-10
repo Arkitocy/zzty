@@ -34,9 +34,9 @@ public class HomeWorkController {
     public void showWork(int number) {
         for (int i = 0; i < homeworkList.size(); i++) {
             HomeWork homeWork = (HomeWork) homeworkList.get(i);
-            if (number==homeWork.getStudent().getNumber()) {
+            if (number == homeWork.getStudent().getNumber()) {
                 homeWork.show();
-            } 
+            }
         }
     }
 
