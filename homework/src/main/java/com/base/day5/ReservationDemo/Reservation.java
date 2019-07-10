@@ -9,6 +9,7 @@ public class Reservation {
 
     public Reservation(Car car, Date reservationDate) {
         this.car = car;
+        this.setDate=new Date();
         this.reservationDate = reservationDate;
     }
 

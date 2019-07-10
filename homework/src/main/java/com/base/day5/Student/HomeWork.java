@@ -12,9 +12,9 @@ public class HomeWork {
     SimpleDateFormat sf = new SimpleDateFormat("yyyy年MM月dd日HH时mm分");
 
 
-    public HomeWork(Student student, Date finishDate, String content) {
+    public HomeWork(Student student, String content) {
         this.student = student;
-        this.finishDate = finishDate;
+        this.finishDate = new Date();
         this.content = content;
     }
 

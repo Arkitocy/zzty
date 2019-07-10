@@ -10,7 +10,6 @@ public class ReservationController {
 
     public boolean setReservation(Reservation reservation) {
         arrayList.add(reservation);
-        reservation.setSetDate(new Date());
         showReservation(reservation.getCar().getCustomer());
         return true;
 
