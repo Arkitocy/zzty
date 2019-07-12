@@ -17,7 +17,6 @@ public class HomeWork {
 
 
     public HomeWork() {
-
     }
 
     public HomeWork(int wNo, Student student, String content) {
