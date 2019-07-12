@@ -28,11 +28,11 @@ public class Test {
 //        wc.inWarehouse(p5, w2);
 //        wc.inWarehouse(p2, w2);
 
-        wc.show(w1);
-        wc.show(w2);
+        wc.show("w1");
+        wc.show("w2");
 
         wc.outWarehouse(p1,w1);
-        wc.show(w1);
+        wc.show("w1");
 
 
     }

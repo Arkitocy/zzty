@@ -64,18 +64,32 @@ public class WarehouseController {
     }
 
     public void inWarehouse(Product product, Warehouse warehouse) {
-        this.getWarehouse(warehouse.getwName()).input(this.getProduct(product.getpName()));
+        if(this.getWarehouse(warehouse.getwName()).input(this.getProduct(product.getpName()))){
+            System.out.println("已入库");
+        }else{
+            System.out.println("无法入库");
+        }
     }
 
 
     public void outWarehouse(Product product, Warehouse warehouse) {
-        this.getWarehouse(warehouse.getwName()).output(this.getProduct(product.getpName()));
+        if(this.getWarehouse(warehouse.getwName()).output(this.getProduct(product.getpName()))){
+            System.out.println("已出库");
+        }else{
+            System.out.println("无此货物");
+        }
     }
 
-    public void show(Warehouse warehouse) {
-        System.out.println("仓库" + warehouse.getwName());
-        this.getWarehouse(warehouse.getwName()).show();
-        System.out.println("----------");
+    public void show(String name) {
+        Warehouse w = this.getWarehouse(name);
+        if (w != null) {
+            System.out.println("----------");
+            System.out.println("仓库" + w.getwName());
+            w.show();
+            System.out.println("----------");
+        } else {
+            System.out.println("无此仓库");
+        }
     }
 }
 
