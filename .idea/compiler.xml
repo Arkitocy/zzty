@@ -7,7 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="homework" />
-        <module name="zzty-cy" />
+        <module name="JDBCtest" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />
