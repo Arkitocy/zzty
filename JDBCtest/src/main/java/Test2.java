@@ -11,6 +11,7 @@ public class Test2 {
             String sql1 = "insert into user values ('小江','123');";
             PreparedStatement ps1 = conn.prepareStatement(sql1);
             int result =ps1.executeUpdate();
+            System.out.println(result);
 
 
             String sql2 = "select * from user;";
