@@ -44,7 +44,7 @@ public class ParkController {
             String sql1 = "select inTime from park where carNo=?;";
             PreparedStatement ps1 = conn.prepareStatement(sql1);
             ps1.setString(1, carNo);
-            String sql2 = "insert from park where carNo=?;";
+            String sql2 = "delete from park where carNo=?;";
             PreparedStatement ps2 = conn.prepareStatement(sql2);
             String sql3 = "update park set outTime = ? where carNo = ? ";
             PreparedStatement ps3 = conn.prepareStatement(sql3);

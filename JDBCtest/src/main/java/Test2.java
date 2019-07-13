@@ -1,19 +1,17 @@
 import java.sql.*;
+
 public class Test2 {
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/zzty-cy?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC";
-        String user = "root";
+        String user = "zztyuser";
         String password = "114514";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url, user, password);
 //
-            String sql1 = "insert into user values ('小江','123');";
+            String sql1 = "insert into user(name,pwd,age) values ('小张','837',24);";
             PreparedStatement ps1 = conn.prepareStatement(sql1);
-            int result =ps1.executeUpdate();
-            System.out.println(result);
-
-
+            ps1.executeUpdate();
             String sql2 = "select * from user;";
             PreparedStatement ps2 = conn.prepareStatement(sql2);
             ResultSet rs = ps2.executeQuery();
