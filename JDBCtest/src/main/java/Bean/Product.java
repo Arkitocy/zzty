@@ -16,7 +16,7 @@ public class Product {
         this.outdate = outdate;
     }
 
-    public Product( ) {
+    public Product() {
     }
 
     public int getId() {
@@ -57,5 +57,13 @@ public class Product {
 
     public void setOutdate(Date outdate) {
         this.outdate = outdate;
+    }
+
+    public void show() {
+        System.out.println("产品ID：" + this.getId());
+        System.out.print("产品名：" + this.getName());
+        System.out.print("  产品分类：" + this.getCategory());
+        System.out.print("  生产日期：" + this.getProductiondate());
+        System.out.println("    保质期：" + this.getOutdate());
     }
 }
