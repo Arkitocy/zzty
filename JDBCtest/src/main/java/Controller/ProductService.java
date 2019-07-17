@@ -1,6 +1,7 @@
 package Controller;
 
 import Bean.Product;
+
 import Comment.Connecter;
 
 import java.sql.*;
@@ -14,8 +15,8 @@ public class ProductService {
     public boolean addProduct(Product product) {
         boolean f = false;
         try {
-            cn = connecter.getConnetcion();
-            if (this.showProduct(product.getName(), product.getCategory()) == null) {
+            if (this.showProduct(product.getName(), product.getCategory())==null) {
+                cn = connecter.getConnetcion();
                 String sql = "insert into product(name,category,productiondate,outdate) values (?,?,?,?);";
                 PreparedStatement ps = cn.prepareStatement(sql);
                 ps.setString(1, product.getName());
@@ -102,7 +103,7 @@ public class ProductService {
     }
 
     public Product showProduct(String name, String category) {
-        Product p1 = new Product();
+        Product p1 = null;
         try {
             cn = connecter.getConnetcion();
             String sql = "select * from product where name= ? and category = ?;";
@@ -111,6 +112,7 @@ public class ProductService {
             ps.setString(2, category);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                p1=new Product();
                 p1.setId(rs.getInt("id"));
                 p1.setName(rs.getString("name"));
                 p1.setCategory(rs.getString("category"));
