@@ -3,16 +3,26 @@ package Controller;
 import Bean.Product;
 import Bean.User;
 import Comment.Connecter;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
+import javax.lang.model.type.ArrayType;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class ProductService {
     Connection cn = null;
+
 
     public boolean addProduct(Product product) {
         boolean f = false;
         try {
             cn = new Connecter().getConnetcion();
+            String sql1 = "select * from product where name=? and category=?";
+            PreparedStatement ps2 = cn.prepareStatement(sql1);
+            ps2.setString(1,product.getName());
+            ps2.setString(2,product.getCategory());
+            ResultSet rs1=ps2.executeQuery();
+            if(rs1==null){
             String sql = "insert into product(name,category,productiondate,outdate) values (?,?,?,?);";
             PreparedStatement ps = cn.prepareStatement(sql);
             ps.setString(1, product.getName());
@@ -22,9 +32,10 @@ public class ProductService {
             int rs = ps.executeUpdate();
             if (rs >= 1) {
                 f = true;
-                System.out.println("success");
             }
-            ps.close();
+            ps.close();}else {
+                System.out.println("该商品已注册");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -97,8 +108,9 @@ public class ProductService {
         }
     }
 
-    public boolean showProduct(String name, String category) {
+    public Product showProduct(String name, String category) {
         boolean f = false;
+        Product p =new Product();
         try {
             cn = new Connecter().getConnetcion();
             String sql = "select * from product where name= ? and category = ?;";
@@ -107,6 +119,11 @@ public class ProductService {
             ps.setString(2, category);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                p.setId(rs.getInt("id"));
+                p.setName(rs.getString("name"));
+                p.setCategory(rs.getString("category"));
+                p.setProductiondate(rs.getTimestamp("productiondate"));
+                p.setOutdate(rs.getTimestamp("outdate"));
                 System.out.print("产品名：" + rs.getString("name"));
                 System.out.print("  产品分类：" + rs.getString("category"));
                 System.out.print("  生产日期：" + rs.getTimestamp("productiondate"));
@@ -124,19 +141,27 @@ public class ProductService {
                     e.printStackTrace();
                 }
             }
-            return f;
+            return p;
 
         }
 
     }
-    public boolean showAll() {
+    public ArrayList<Product> showAll() {
         boolean f = false;
+        Product p1= new Product();
+        ArrayList<Product> ap = new ArrayList<>();
         try {
             cn = new Connecter().getConnetcion();
             String sql = "select * from product ;";
             PreparedStatement ps = cn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                p1.setId(rs.getInt("id"));
+                p1.setName(rs.getString("name"));
+                p1.setCategory(rs.getString("category"));
+                p1.setProductiondate(rs.getTimestamp("productiondate"));
+                p1.setOutdate(rs.getTimestamp("outdate"));
+                ap.add(p1);
                 System.out.print("产品名：" + rs.getString("name"));
                 System.out.print("  产品分类：" + rs.getString("category"));
                 System.out.print("  生产日期：" + rs.getTimestamp("productiondate"));
@@ -154,7 +179,7 @@ public class ProductService {
                     e.printStackTrace();
                 }
             }
-            return f;
+            return ap;
 
         }
 

@@ -16,6 +16,9 @@ public class Product {
         this.outdate = outdate;
     }
 
+    public Product( ) {
+    }
+
     public int getId() {
         return id;
     }
