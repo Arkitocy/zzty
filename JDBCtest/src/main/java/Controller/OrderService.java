@@ -19,42 +19,44 @@ public class OrderService {
      */
     public boolean addOrder(Order order) {
         boolean f = false;
-        try {
-            cn = connecter.getConnetcion();
-            String sql = "insert into order1(name,ordertime) values (?,?);";
-            PreparedStatement ps = cn.prepareStatement(sql);
-            ps.setString(1, order.getName());
-            ps.setTimestamp(2, new Timestamp(order.getOrdertime().getTime()));
-            int rs = ps.executeUpdate();
-            if (rs >= 1) {
-                f = true;
-            }
-            int id = 0;
-            String sql2 = "SELECT LAST_INSERT_ID();";
-            PreparedStatement ps2 = cn.prepareStatement(sql2);
-            ResultSet s = ps2.executeQuery();
-            while (s.next()) {
-                id = s.getInt("LAST_INSERT_ID()");
-            }
-            for (int i = 0; i < order.getArrayList().size(); i++) {
-                this.setOrderProduct(id, order.getArrayList().get(i));
-            }
-            BigDecimal sum = this.sumPirce(id);
-            this.setSumPrice(sum, order.getName());
-            ps.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (cn != null) {
-                try {
-                    cn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
+        if (this.findByName(order.getName()) != true) {
+            try {
+                cn = connecter.getConnetcion();
+                String sql = "insert into order1(name,ordertime) values (?,?);";
+                PreparedStatement ps = cn.prepareStatement(sql);
+                ps.setString(1, order.getName());
+                ps.setTimestamp(2, new Timestamp(order.getOrdertime().getTime()));
+                int rs = ps.executeUpdate();
+                if (rs >= 1) {
+                    f = true;
+                }
+                int id = 0;
+                String sql2 = "SELECT LAST_INSERT_ID();";
+                PreparedStatement ps2 = cn.prepareStatement(sql2);
+                ResultSet s = ps2.executeQuery();
+                while (s.next()) {
+                    id = s.getInt("LAST_INSERT_ID()");
+                }
+                for (int i = 0; i < order.getArrayList().size(); i++) {
+                    this.setOrderProduct(id, order.getArrayList().get(i));
+                }
+                BigDecimal sum = this.sumPirce(id);
+                this.setSumPrice(sum, order.getName());
+                ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                if (cn != null) {
+                    try {
+                        cn.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
-            return f;
-        }
 
+        }
+        return f;
     }
 
     /**
@@ -264,4 +266,28 @@ public class OrderService {
 
     }
 
+    /**
+     * 按订单名查找
+     * @param name
+     * @return
+     */
+    public boolean findByName(String name) {
+        boolean f = false;
+        try {
+            cn = connecter.getConnetcion();
+            String sql = "select * from order1 where name =?;";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                f = true;
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return f;
+
+    }
 }

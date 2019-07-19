@@ -16,11 +16,11 @@ public class OrderTest {
         }});
         OrderService os = new OrderService();
         os.addOrder(order1);
-        os.getOrder(30).show();
+//        os.getOrder(30).show();
 //        os.deleteOrder();
 //        os.getOrder(23).show();
-        os.updateOrder(30,order2);
-        os.getOrder(30).show();
+//        os.updateOrder(30,order2);
+//        os.getOrder(30).show();
     }
 
 }
