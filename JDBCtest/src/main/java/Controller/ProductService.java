@@ -15,14 +15,15 @@ public class ProductService {
     public boolean addProduct(Product product) {
         boolean f = false;
         try {
-            if (this.showProduct(product.getName(), product.getCategory())==null) {
+            if (this.showProduct(product.getName(), product.getCategory()) == null) {
                 cn = connecter.getConnetcion();
-                String sql = "insert into product(name,category,productiondate,outdate) values (?,?,?,?);";
+                String sql = "insert into product(name,category,productiondate,outdate,price) values (?,?,?,?,?);";
                 PreparedStatement ps = cn.prepareStatement(sql);
                 ps.setString(1, product.getName());
                 ps.setString(2, product.getCategory());
                 ps.setTimestamp(3, new Timestamp(product.getProductiondate().getTime()));
                 ps.setTimestamp(4, new Timestamp(product.getOutdate().getTime()));
+                ps.setBigDecimal(5, product.getPrice());
                 int rs = ps.executeUpdate();
                 if (rs >= 1) {
                     f = true;
@@ -76,13 +77,14 @@ public class ProductService {
         boolean f = false;
         try {
             cn = connecter.getConnetcion();
-            String sql1 = "update  product set name = ?,category=?,productiondate =?,outdate =? where id=?;";
+            String sql1 = "update  product set name = ?,category=?,productiondate =?,outdate =? price=? where id=?;";
             PreparedStatement ps1 = cn.prepareStatement(sql1);
             ps1.setString(1, product.getName());
             ps1.setString(2, product.getCategory());
             ps1.setTimestamp(3, new Timestamp(product.getProductiondate().getTime()));
             ps1.setTimestamp(4, new Timestamp(product.getOutdate().getTime()));
-            ps1.setInt(5, product.getId());
+            ps1.setBigDecimal(5, product.getPrice());
+            ps1.setInt(6, product.getId());
             int rs = ps1.executeUpdate();
             if (rs >= 1) {
                 f = true;
@@ -112,12 +114,13 @@ public class ProductService {
             ps.setString(2, category);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                p1=new Product();
+                p1 = new Product();
                 p1.setId(rs.getInt("id"));
                 p1.setName(rs.getString("name"));
                 p1.setCategory(rs.getString("category"));
                 p1.setProductiondate(rs.getTimestamp("productiondate"));
                 p1.setOutdate(rs.getTimestamp("outdate"));
+                p1.setPrice(rs.getBigDecimal("price"));
             }
             rs.close();
             ps.close();
@@ -151,6 +154,8 @@ public class ProductService {
                 p1.setCategory(rs.getString("category"));
                 p1.setProductiondate(rs.getTimestamp("productiondate"));
                 p1.setOutdate(rs.getTimestamp("outdate"));
+                p1.setOutdate(rs.getTimestamp("outdate"));
+                p1.setPrice(rs.getBigDecimal("price"));
                 ap.add(p1);
             }
             rs.close();

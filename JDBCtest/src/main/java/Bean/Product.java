@@ -1,5 +1,6 @@
 package Bean;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Product {
@@ -8,15 +9,25 @@ public class Product {
     private String category;
     private Date productiondate;
     private Date outdate;
+    private BigDecimal price;
 
-    public Product(String name, String category, Date productiondate, Date outdate) {
+    public Product(String name, String category, Date productiondate, Date outdate, BigDecimal price) {
         this.name = name;
         this.category = category;
         this.productiondate = productiondate;
         this.outdate = outdate;
+        this.price = price;
     }
 
     public Product() {
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public int getId() {
